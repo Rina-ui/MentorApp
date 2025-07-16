@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:girls_up/screen/Debut.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Homepage extends StatefulWidget {
@@ -16,7 +17,7 @@ class _HomepageState extends State<Homepage> {
     Future.delayed(Duration(seconds: 5), () {
       Navigator.push(
           context, 
-          MaterialPageRoute(builder: (context) => Homepage())
+          MaterialPageRoute(builder: (context) => Debut())
       );
     });
 

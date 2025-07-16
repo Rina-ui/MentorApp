@@ -15,6 +15,41 @@ class _LoginState extends State<Login> {
   final usernameController = TextEditingController();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  bool isLoading = false;
+  bool isPassword = true;
+
+  void togglePassword(){
+    setState(() {
+      isPassword= !isPassword;
+    });
+  }
+
+  Future<void> login() async {
+    final username = usernameController.text;
+    final email = emailController.text;
+    final password = passwordController.text;
+
+    if (username.isEmpty || email.isEmpty || password.isEmpty){
+      _showError('Please fill in all fields');
+      return;
+    }
+  }
+  
+  void _showError (String message) {
+    showDialog(
+        context: context, 
+        builder: (_) => AlertDialog(
+          title: Text('Error'),
+          content: Text(message),
+          actions: [
+            TextButton(
+                onPressed: () => Navigator.pop(context), 
+                child: Text('OK')
+            )
+          ],
+        )
+    );
+  }
 
 
   @override
