@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+import 'Register.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -30,6 +33,15 @@ class _LoginState extends State<Login> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              Text('Login',
+                style: GoogleFonts.cedarvilleCursive(
+                  fontSize: 60,
+                  fontWeight: FontWeight.w500,
+                  color: Color(0xFF000000),
+                ),
+
+              ),
+              SizedBox(height: 20,),
               TextField(
                 decoration: InputDecoration(
                     labelText: 'Username',
@@ -91,11 +103,17 @@ class _LoginState extends State<Login> {
                     color: Color(0xFF000000),
                     fontWeight: FontWeight.w400,
                   ),),
-                  Text("Sign up",style: TextStyle(
-                    fontSize: 18,
-                    color: Color(0xFF324A59),
-                    fontWeight: FontWeight.w500,
-                  ),)
+                  GestureDetector(
+                    onTap: (){
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => Register() ));
+                    },
+                    child: Text("Register",style: TextStyle(
+                      fontSize: 18,
+                      color: Color(0xFF324A59),
+                      fontWeight: FontWeight.w500,
+                    ),),
+                  )
                 ],
               )
             ],
