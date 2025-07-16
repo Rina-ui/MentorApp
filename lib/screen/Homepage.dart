@@ -1,3 +1,4 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:girls_up/screen/Debut.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -40,13 +41,26 @@ class _HomepageState extends State<Homepage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text('Connect. Learn. Grow. Together.',
-                  style: GoogleFonts.cedarvilleCursive(
-                    fontSize: 30,
-                    fontWeight: FontWeight.w600,
-                    color: Color(0xFF000000),
-                  ),
+                AnimatedTextKit(
+                  animatedTexts: [
+                    TypewriterAnimatedText(
+                      'Hello world!',
+                      textStyle: const TextStyle(fontSize: 32.0, fontWeight: FontWeight.bold),
+                      speed: const Duration(milliseconds: 2000),
+                    ),
+                  ],
+                  totalRepeatCount: 4,
+                  pause: const Duration(milliseconds: 1000),
+                  displayFullTextOnTap: true,
+                  stopPauseOnTap: true,
                 ),
+                // Text('Connect. Learn. Grow. Together.',
+                //   style: GoogleFonts.cedarvilleCursive(
+                //     fontSize: 30,
+                //     fontWeight: FontWeight.w600,
+                //     color: Color(0xFF000000),
+                //   ),
+                // ),
                 SizedBox(height: 40,),
                 Text('Welcome to Mentorship Platform.',
                   style: GoogleFonts.labrada(
