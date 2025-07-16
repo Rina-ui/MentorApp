@@ -8,6 +8,7 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  final usernameController = TextEditingController();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
@@ -15,24 +16,91 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
+      body: Container(
+        width: double.infinity,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/images/097c11d95d23b930fac5cfa6c9bb7d50.jpg'),
+            fit: BoxFit.cover,
+          ),
+        ),
+
+        child: Padding(
+            padding: EdgeInsets.all(50),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Expanded(
-                flex: 1,
-                  child: Container(
-
-                  )
+              TextField(
+                decoration: InputDecoration(
+                    labelText: 'Username',
+                    hintStyle: TextStyle(color: Colors.white),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    )
+                ),
+                controller: usernameController ,
               ),
-              Divider(),
-              Expanded(
-                flex: 3,
-                  child: Column(
-
-                  )
+              SizedBox(height: 20,),
+              TextField(
+                decoration: InputDecoration(
+                    labelText: 'Email',
+                    hintStyle: TextStyle(color: Colors.white),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    )
+                ),
+                controller: emailController ,
               ),
+              SizedBox(height: 20,),
+              TextField(
+                decoration: InputDecoration(
+                  labelText: 'Password',
+                  hintStyle: TextStyle(color: Colors.white),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+                controller: passwordController ,
+              ),
+
+              SizedBox(height: 40,),
+              GestureDetector(
+                onTap: (){
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Login() ));
+                },
+                child:  Row(
+                  children: [
+                    Spacer(),
+                    CircleAvatar(
+                      radius: 30.0,
+                      backgroundColor: Color(0xFF95d5b2),
+                      child: Icon(Icons.arrow_forward, size: 40, color: Colors.white, ),
+                    ),
+                    SizedBox(width: 10,),
+
+                  ],
+                ),
+              ),
+              SizedBox(height: 40,width: 56,),
+              Row(
+                children: [
+                  SizedBox(width: 15,),
+                  Text("New member?",style: TextStyle(
+                    fontSize: 18,
+                    color: Color(0xFF000000),
+                    fontWeight: FontWeight.w400,
+                  ),),
+                  Text("Sign up",style: TextStyle(
+                    fontSize: 18,
+                    color: Color(0xFF324A59),
+                    fontWeight: FontWeight.w500,
+                  ),)
+                ],
+              )
             ],
-          )
+          ),
+        )
       ),
     );
   }
