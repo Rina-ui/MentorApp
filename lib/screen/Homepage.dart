@@ -1,0 +1,45 @@
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+class Homepage extends StatelessWidget {
+  const Homepage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Container(
+          width: double.infinity,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/images/d750304557680483809cd6c97fc34499.jpg'),
+              fit: BoxFit.cover,
+            ),
+          ),
+
+          child: Padding(
+            padding: EdgeInsets.all(30),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text('Connect. Learn. Grow. Together.',
+                  style: GoogleFonts.cedarvilleCursive(
+                    fontSize: 30,
+                    fontWeight: FontWeight.w600,
+                    color: Color(0xFF000000),
+                  ),
+                ),
+                SizedBox(height: 40,),
+                Text('Welcome to Mentorship Platform.',
+                  style: GoogleFonts.labrada(
+                    fontSize: 30,
+                    fontWeight: FontWeight.w600,
+                    color: Color(0xFF000000),
+                  ),
+                ),
+              ],
+            ),
+          )
+      ),
+    );
+  }
+}

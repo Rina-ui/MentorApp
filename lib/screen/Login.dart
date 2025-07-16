@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:girls_up/screen/Homepage.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'Register.dart';
@@ -82,7 +83,7 @@ class _LoginState extends State<Login> {
               GestureDetector(
                 onTap: (){
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => Login() ));
+                      MaterialPageRoute(builder: (context) => Homepage() ));
                 },
                 child:  Row(
                   children: [
