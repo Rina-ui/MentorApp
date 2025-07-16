@@ -44,6 +44,7 @@ class _LoginState extends State<Login> {
               SizedBox(height: 20,),
               TextField(
                 decoration: InputDecoration(
+                    suffixIcon: Icon(Icons.person_outline_outlined),
                     labelText: 'Username',
                     hintStyle: TextStyle(color: Colors.white),
                     border: OutlineInputBorder(
@@ -55,6 +56,7 @@ class _LoginState extends State<Login> {
               SizedBox(height: 20,),
               TextField(
                 decoration: InputDecoration(
+                    suffixIcon: Icon(Icons.email_sharp),
                     labelText: 'Email',
                     hintStyle: TextStyle(color: Colors.white),
                     border: OutlineInputBorder(
@@ -66,6 +68,7 @@ class _LoginState extends State<Login> {
               SizedBox(height: 20,),
               TextField(
                 decoration: InputDecoration(
+                  suffixIcon: Icon(Icons.remove_red_eye_outlined),
                   labelText: 'Password',
                   hintStyle: TextStyle(color: Colors.white),
                   border: OutlineInputBorder(
