@@ -47,6 +47,7 @@ class _LoginState extends State<Login> {
         body: jsonEncode({
           'username': username,
           'password': password,
+          'role': learner ? 'learner' : 'mentor'
         }),
       );
 
@@ -158,6 +159,7 @@ class _LoginState extends State<Login> {
                       onChanged: (value) {
                         setState(() {
                           learner = value!;
+                          if (value) mentor = false;
                         });
                       },
                     title: Text('Learner'),
@@ -167,6 +169,7 @@ class _LoginState extends State<Login> {
                       onChanged: (value) {
                         setState(() {
                           mentor = value!;
+                          if (value) learner = false;
                         });
                       },
                     title: Text('Mentor'),
@@ -199,10 +202,7 @@ class _LoginState extends State<Login> {
 
               SizedBox(height: 40,),
               GestureDetector(
-                onTap: (){
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => Homepage() ));
-                },
+                onTap: login,
                 child:  Row(
                   children: [
                     Spacer(),

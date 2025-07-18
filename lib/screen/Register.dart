@@ -1,6 +1,10 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:http/http.dart' as http;
 
+import 'Homepage.dart';
 import 'Login.dart';
 
 class Register extends StatefulWidget {
@@ -19,12 +23,44 @@ class _RegisterState extends State<Register> {
   bool isPassword = true;
 
   Future<void> register() async {
+
     final username = usernameController.text.trim();
     final email = emailController.text.trim();
     final password = passwordController.text.trim();
 
-    if(username.isEmpty || email.isEmpty || password.isEmpty) {
-      _showError('Please enter a username, email and password');
+    if (!learner && !mentor) {
+      _showError('Veuillez sélectionner un rôle.');
+      return;
+    }
+
+    if (username.isEmpty || email.isEmpty || password.isEmpty){
+      _showError('Please enter a username and password');
+      return;
+    }
+
+    final url = Uri.parse('http://10.0.2.2:3000/api/user/register');
+    final response = await http.post(
+        url,
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode({
+          'username': usernameController.text,
+          'email': emailController.text,
+          'password': passwordController.text,
+          'role': learner ? 'learner' : 'mentor'
+        })
+    );
+
+    if (response.statusCode == 200 || response.statusCode == 201){
+      final data = jsonDecode(response.body);
+      print ('Registration successful: $data');
+
+      Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => Homepage())
+      );
+    }else{
+      print('Registration failded: ${response.statusCode}');
+      _showError('Registration failded: ${response.statusCode}');
     }
   }
 
@@ -77,6 +113,7 @@ class _RegisterState extends State<Register> {
                       onChanged: (value) {
                         setState(() {
                           learner = value!;
+                          if (value) mentor = false;
                         });
                       },
                       title: Text('Learner'),
@@ -86,6 +123,7 @@ class _RegisterState extends State<Register> {
                       onChanged: (value) {
                         setState(() {
                           mentor = value!;
+                          if (value) learner = false;
                         });
                       },
                       title: Text('Mentor'),
@@ -130,10 +168,7 @@ class _RegisterState extends State<Register> {
 
                 SizedBox(height: 40,),
                 GestureDetector(
-                  onTap: (){
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Register() ));
-                  },
+                  onTap: register,
                   child:  Row(
                     children: [
                       Spacer(),
