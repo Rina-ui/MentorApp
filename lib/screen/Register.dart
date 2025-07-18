@@ -16,6 +16,33 @@ class _RegisterState extends State<Register> {
   final passwordController = TextEditingController();
   bool learner = false;
   bool mentor = false;
+  bool isPassword = true;
+
+  Future<void> register() async {
+    final username = usernameController.text.trim();
+    final email = emailController.text.trim();
+    final password = passwordController.text.trim();
+
+    if(username.isEmpty || email.isEmpty || password.isEmpty) {
+      _showError('Please enter a username, email and password');
+    }
+  }
+
+  void _showError (String message) {
+    showDialog(
+        context: context,
+        builder: (_) => AlertDialog(
+          title: Text('Error'),
+          content: Text(message),
+          actions: [
+            TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: Text('OK')
+            )
+          ],
+        )
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
