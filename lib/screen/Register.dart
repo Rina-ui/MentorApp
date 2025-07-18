@@ -14,6 +14,8 @@ class _RegisterState extends State<Register> {
   final usernameController = TextEditingController();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  bool learner = false;
+  bool mentor = false;
 
   @override
   Widget build(BuildContext context) {
@@ -38,9 +40,31 @@ class _RegisterState extends State<Register> {
                     fontWeight: FontWeight.w500,
                     color: Color(0xFF000000),
                   ),
-
                 ),
                 SizedBox(height: 20,),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    CheckboxListTile(
+                      value: learner,
+                      onChanged: (value) {
+                        setState(() {
+                          learner = value!;
+                        });
+                      },
+                      title: Text('Learner'),
+                    ),
+                    CheckboxListTile(
+                      value: mentor,
+                      onChanged: (value) {
+                        setState(() {
+                          mentor = value!;
+                        });
+                      },
+                      title: Text('Mentor'),
+                    )
+                  ],
+                ),
                 TextField(
                   decoration: InputDecoration(
                       suffixIcon: Icon(Icons.person_outline_outlined),

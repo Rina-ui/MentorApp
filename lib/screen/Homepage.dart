@@ -15,7 +15,7 @@ class _HomepageState extends State<Homepage> {
   void initState() {
     super.initState();
 
-    Future.delayed(Duration(seconds: 5), () {
+    Future.delayed(Duration(seconds: 10), () {
       Navigator.push(
           context, 
           MaterialPageRoute(builder: (context) => Debut())
@@ -44,9 +44,12 @@ class _HomepageState extends State<Homepage> {
                 AnimatedTextKit(
                   animatedTexts: [
                     TypewriterAnimatedText(
-                      'Hello world!',
-                      textStyle: const TextStyle(fontSize: 32.0, fontWeight: FontWeight.bold),
-                      speed: const Duration(milliseconds: 2000),
+                      'Connect. Learn. Grow. Together.',
+                      textStyle: GoogleFonts.cedarvilleCursive(
+                        fontSize: 30.0,
+                        fontWeight: FontWeight.w600,
+                      ),
+                      speed: const Duration(milliseconds: 50),
                     ),
                   ],
                   totalRepeatCount: 4,
@@ -54,13 +57,6 @@ class _HomepageState extends State<Homepage> {
                   displayFullTextOnTap: true,
                   stopPauseOnTap: true,
                 ),
-                // Text('Connect. Learn. Grow. Together.',
-                //   style: GoogleFonts.cedarvilleCursive(
-                //     fontSize: 30,
-                //     fontWeight: FontWeight.w600,
-                //     color: Color(0xFF000000),
-                //   ),
-                // ),
                 SizedBox(height: 40,),
                 Text('Welcome to Mentorship Platform.',
                   style: GoogleFonts.labrada(
