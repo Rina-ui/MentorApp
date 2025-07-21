@@ -1,4 +1,7 @@
+import 'dart:io' as IO;
+
 import 'package:flutter/material.dart';
+import 'package:socket_io_client/socket_io_client.dart' as IO;
 
 import '../utils/user.dart';
 
@@ -14,6 +17,33 @@ class _ChatpageState extends State<Chatpage> {
   final TextEditingController _mesaageController = TextEditingController();
   final List<String> messages = [];
 
+  late IO.Socket socket;
+
+  @override
+  void initState() {
+    super.initState();
+    connectToServer();
+  }
+
+  void connectToServer() {
+    socket = IO.io('http://10.0.2.2:3000', <String, dynamic>{
+      'transports': ['websocket'],
+      'autoConnect': true,
+    });
+    
+    socket.onConnect((_) {
+      print('Connect to the server');
+    });
+    
+    socket.on('receiveMessage', (data){
+      setState(() {
+        messages.add(data);
+      });
+    });
+    
+    socket.onDisconnect((_) => print('Disconnect to the server'))
+  }
+
   void sendMessage() {
     if (_mesaageController.text.isNotEmpty) {
       setState(() {
@@ -21,6 +51,12 @@ class _ChatpageState extends State<Chatpage> {
         _mesaageController.clear();
       });
     }
+  }
+
+  @override
+  void dispose() {
+    socket.dispose();
+    super.dispose();
   }
 
   @override
