@@ -17,7 +17,11 @@ class _DebutState extends State<Debut> {
       ),
       body: Column(
         children: [
+          Container(
+            child: SearchBar(
+            ),
 
+          )
         ],
       ),
     );

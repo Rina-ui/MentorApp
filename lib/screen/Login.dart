@@ -47,7 +47,7 @@ class _LoginState extends State<Login> {
         body: jsonEncode({
           'username': username,
           'password': password,
-          'role': learner ? 'learner' : 'mentor'
+          'role': learner ? 'learner' : 'mentor',
         }),
       );
 
