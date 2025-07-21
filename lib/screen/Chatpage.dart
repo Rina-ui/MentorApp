@@ -41,7 +41,7 @@ class _ChatpageState extends State<Chatpage> {
       });
     });
     
-    socket.onDisconnect((_) => print('Disconnect to the server'))
+    socket.onDisconnect((_) => print('Disconnect to the server'));
   }
 
   void sendMessage() {
